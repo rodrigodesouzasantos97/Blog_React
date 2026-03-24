@@ -23,20 +23,34 @@ const Admin = () => {
     getPosts();
   }, []);
 
+  const deletePost = async (id) => {
+    await blogFetch.delete(`/posts/${id}`);
+
+    const filteredPosts = posts.filter((post) => post.id !== id);
+
+    setPosts(filteredPosts);
+  };
+
   return (
     <div className="admin">
       <h1>Gerenciar Posts</h1>
-      {posts.length === 0 ? (<p>Carregando...</p>) : (
+      {posts.length === 0 ? (
+        <p>Carregando...</p>
+      ) : (
         posts.map((post) => (
-            <div className="post" key={post.id}>
-                <h3>{post.title}</h3>
-                <p>{post.body}</p>
-                <div className="actions">
-                    <Link className="btn edit-btn">Editar</Link>
-                    <button className="btn delete-btn">Excluir</button>
-                </div>
-
+          <div className="post" key={post.id}>
+            <h3>{post.title}</h3>
+            <p>{post.body}</p>
+            <div className="actions">
+              <Link className="btn edit-btn">Editar</Link>
+              <button
+                className="btn delete-btn"
+                onClick={() => deletePost(post.id)}
+              >
+                Excluir
+              </button>
             </div>
+          </div>
         ))
       )}
     </div>
