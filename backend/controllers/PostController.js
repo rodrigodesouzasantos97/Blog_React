@@ -1,5 +1,16 @@
 const Post = require("../models/Post");
 
+const getPosts = async (req, res) => {
+  try {
+    const posts = await Post.find();
+
+    res.status(200).json(posts);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Ocorreu um erro!");
+  }
+};
+
 const createPost = async (req, res) => {
   try {
     const { title, description, author, image } = req.body;
@@ -27,4 +38,5 @@ const createPost = async (req, res) => {
 
 module.exports = {
   createPost,
+  getPosts,
 };
