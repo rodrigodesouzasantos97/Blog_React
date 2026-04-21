@@ -17,7 +17,7 @@ const getPost = async (req, res) => {
 
     const post = await Post.findById(id);
 
-    if(!post) {
+    if (!post) {
       res.status(404).json({ msg: "Post não encontrado." });
       return;
     }
@@ -54,8 +54,29 @@ const createPost = async (req, res) => {
   }
 };
 
+const deletePost = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const post = await Post.findById(id);
+
+    if (!post) {
+      res.status(404).json({ msg: "Post não encontrado." });
+      return;
+    }
+
+    const deletedPost = await Post.findByIdAndDelete(id);
+
+    res.status(200).json({ deletedPost, msg: "Post excluído com sucesso!" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Ocorreu um erro!");
+  }
+};
+
 module.exports = {
   createPost,
   getPosts,
   getPost,
+  deletePost,
 };
