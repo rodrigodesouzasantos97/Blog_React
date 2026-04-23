@@ -12,8 +12,20 @@
   border-bottom: 1px solid #777;
 }
 
-.post h3,
-.post p {
+.content {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1rem 0;
+}
+
+.content img{
+  height: 250px;
+  width: 250px;
+  object-fit: cover;
+}
+
+.texts h3,
+.texts p {
   margin-bottom: 1rem;
 }
 
@@ -37,4 +49,10 @@
 .btn:hover {
   color: #fff;
   background-color: #0e1217;
+}
+
+.dates {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
 }
