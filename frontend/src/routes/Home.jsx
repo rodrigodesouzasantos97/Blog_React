@@ -11,7 +11,7 @@ const Home = () => {
 
   const getPosts = async () => {
     try {
-      const response = await blogFetch.get("/posts");
+      const response = await blogFetch.get("/");
       const data = response.data;
       setPosts(data);
     } catch (error) {
@@ -23,6 +23,20 @@ const Home = () => {
     getPosts();
   }, []);
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+
+    return date
+      .toLocaleString("pt-BR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      })
+      .replace(",", " -");
+  };
+
   return (
     <div id="home">
       <h1>Últimos posts</h1>
@@ -30,12 +44,26 @@ const Home = () => {
         <p>Carregando...</p>
       ) : (
         posts.map((post) => (
-          <div className="post" key={post.id}>
-            <h3>{post.title}</h3>
-            <p>{post.body}</p>
-            <Link to={`/posts/${post.id}`} className="btn">
+          <div className="post" key={post._id}>
+            <p>{post.author}</p>
+            <div className="content">
+              <img src={post.image} alt={post.title} />
+              <div className="texts">
+                <h3>{post.title}</h3>
+                <p>{post.description}</p>
+              </div>
+            </div>
+            <Link to={`/posts/${post._id}`} className="btn">
               Ler Mais
             </Link>
+            <div className="dates">
+              <p>{formatDate(post.createdAt)}</p>
+              <p>
+                {post.createdAt !== post.updatedAt
+                  ? `Editado em: ${formatDate(post.createdAt)}`
+                  : ""}
+              </p>
+            </div>
           </div>
         ))
       )}
