@@ -1,0 +1,16 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+
+.imageAndTexts {
+    display: flex;
+    gap: 1rem;
+}
+
+.imageAndTexts img{
+  height: 250px;
+  width: 250px;
+  object-fit: cover;
+}
