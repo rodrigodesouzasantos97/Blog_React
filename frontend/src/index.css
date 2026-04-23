@@ -28,4 +28,9 @@ a:hover {
 
 p {
   color: #a9abb3;
+  margin-bottom: 0.5rem;
+}
+
+h3 {
+  margin-bottom: 1rem;
 }

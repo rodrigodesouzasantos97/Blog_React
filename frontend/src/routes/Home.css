@@ -12,23 +12,6 @@
   border-bottom: 1px solid #777;
 }
 
-.content {
-  display: flex;
-  gap: 1.5rem;
-  margin: 1rem 0;
-}
-
-.content img{
-  height: 250px;
-  width: 250px;
-  object-fit: cover;
-}
-
-.texts h3,
-.texts p {
-  margin-bottom: 1rem;
-}
-
 .post h3::first-letter {
   text-transform: uppercase;
 }
